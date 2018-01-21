@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<bean id="markSheet" class="com.spring.model.MarkSheet">
+		<property name="studentName" value="venkat" />
+		<property name="marksInMath" value="10" />
+		<property name="marksInPhysics" value="40" />
+		<property name="marksInChemistry" value="65" />
+	</bean>
+	<bean id="examinationResult" class="com.spring.model.ExaminationResult">
+		<property name="hasPassed" value="#{markSheet.marksInMath>=30 and markSheet.marksInPhysics>=30 and markSheet.marksInChemistry>=30}" />
+		<property name="resultMsg" value="#{markSheet.marksInMath>=30 and markSheet.marksInPhysics>=30 and markSheet.marksInChemistry>=30?passedMsg:failedMsg}"/>
+	</bean>
+	<bean id="passedMsg" class="java.lang.String">
+	<constructor-arg>
+	<value>You have passed</value>
+	</constructor-arg>
+	</bean>
+	<bean id="failedMsg" class="java.lang.String">
+	<constructor-arg>
+	<value>You have failed</value>
+	</constructor-arg>
+	</bean>
+</beans>
